@@ -22,6 +22,7 @@ setono_sylius_redirect:
             channels_help: If you don't enable any channels, the redirect will work on all channels
             destination: Destination
             destination_placeholder: /en_US/redirect-to or https://redirect.to/
+            destination_help: Empty destination will lead redirect to 404 (410 if Permanent is checked)
             enabled: Enabled
             only_404: Redirect only if source returns a 404
             only_404_help: If this is set, the redirect will only be applied if the path you entered in source returns a 404 (not found)
