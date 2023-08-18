@@ -10,6 +10,8 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Exception\GoneHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webmozart\Assert\Assert;
 
@@ -64,6 +66,10 @@ final class ControllerSubscriber implements EventSubscriberInterface
 
         $lastRedirect = $redirectionPath->last();
         Assert::notNull($lastRedirect);
+
+        if (!$lastRedirect->getDestination()) {
+            throw $lastRedirect->isPermanent() ? new GoneHttpException() : new NotFoundHttpException();
+        }
 
         $event->setController(static fn () => self::getRedirectResponse($lastRedirect, $request->getQueryString()));
     }
