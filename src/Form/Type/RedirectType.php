@@ -26,6 +26,7 @@ final class RedirectType extends AbstractResourceType
                 'attr' => [
                     'placeholder' => 'setono_sylius_redirect.form.redirect.destination_placeholder',
                 ],
+                'required' => false,
             ])
             ->add('permanent', CheckboxType::class, [
                 'label' => 'setono_sylius_redirect.form.redirect.permanent',

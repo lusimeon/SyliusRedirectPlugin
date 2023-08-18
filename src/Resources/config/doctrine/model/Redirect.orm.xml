@@ -19,7 +19,7 @@
         </indexes>
 
         <field name="source" type="string"/>
-        <field name="destination" type="string"/>
+        <field name="destination" type="string" nullable="true"/>
         <field name="permanent" type="boolean"/>
         <field name="count" type="integer"/>
         <field name="lastAccessed" column="last_accessed" type="datetime" nullable="true"/>

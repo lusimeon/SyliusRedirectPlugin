@@ -34,11 +34,5 @@
                 <option name="groups">setono_sylius_redirect</option>
             </constraint>
         </property>
-        <property name="destination">
-            <constraint name="NotBlank">
-                <option name="message">setono_sylius_redirect.form.redirect.destination.not_blank</option>
-                <option name="groups">setono_sylius_redirect</option>
-            </constraint>
-        </property>
     </class>
 </constraint-mapping>

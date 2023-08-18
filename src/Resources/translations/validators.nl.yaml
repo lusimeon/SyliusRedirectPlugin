@@ -1,9 +1,6 @@
 setono_sylius_redirect:
     form:
         redirect:
-            destination:
-                not_blank: Bestemming mag niet leeg zijn
-                regex: Bestemming moet beginnen met een '/'
             source:
                 not_blank: Bron mag niet leeg zijn
                 not_identical_to: Bron en Bestemming mogen niet aan elkaar gelijk zijn

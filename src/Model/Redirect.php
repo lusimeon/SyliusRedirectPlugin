@@ -62,7 +62,7 @@ class Redirect implements RedirectInterface
         return $this->destination;
     }
 
-    public function setDestination(string $destination): void
+    public function setDestination(?string $destination = ''): void
     {
         $this->destination = $destination;
     }
