@@ -8,6 +8,7 @@ setono_sylius_redirect:
         manage_redirects: Manage redirects
         new_redirect: New redirect
         permanent: Permanent
+        regexp: Regexp
         redirects: Redirects
         source: Source
     menu:

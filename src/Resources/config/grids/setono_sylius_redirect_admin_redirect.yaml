@@ -17,6 +17,11 @@ sylius_grid:
                     label: setono_sylius_redirect.ui.permanent
                     options:
                         template: "@SyliusUi/Grid/Field/yesNo.html.twig"
+                regexp:
+                    type: twig
+                    label: setono_sylius_redirect.ui.regexp
+                    options:
+                        template: "@SyliusUi/Grid/Field/yesNo.html.twig"
                 enabled:
                     type: twig
                     label: setono_sylius_redirect.ui.enabled
