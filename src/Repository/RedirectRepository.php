@@ -79,10 +79,6 @@ class RedirectRepository extends EntityRepository implements RedirectRepositoryI
             }
         }
 
-        if ($preferredRedirect && $regexp) {
-            $preferredRedirect->setRegexp(true);
-        }
-
         return $preferredRedirect;
     }
 }

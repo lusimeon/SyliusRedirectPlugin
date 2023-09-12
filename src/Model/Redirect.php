@@ -37,7 +37,7 @@ class Redirect implements RedirectInterface
     /** @var Collection<array-key, ChannelInterface> */
     protected $channels;
 
-    protected $regexp = false;
+    protected bool $regexp = false;
 
     public function __construct()
     {

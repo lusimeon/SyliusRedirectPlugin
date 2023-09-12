@@ -15,6 +15,12 @@ final class RedirectType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('regexp', CheckboxType::class, [
+                'label' => 'setono_sylius_redirect.form.redirect.regexp',
+                'attr' => [
+                    'placeholder' => 'setono_sylius_redirect.form.redirect.regexp_placeholder',
+                ],
+            ])
             ->add('source', TextType::class, [
                 'label' => 'setono_sylius_redirect.form.redirect.source',
                 'attr' => [
