@@ -31,7 +31,8 @@ final class RedirectFactory implements RedirectFactoryInterface
         string $destination,
         bool $permanent = true,
         bool $only404 = true,
-        iterable $channels = []
+        iterable $channels = [],
+        bool $regexp = false,
     ): RedirectInterface {
         $redirect = $this->createNew();
 
@@ -39,6 +40,7 @@ final class RedirectFactory implements RedirectFactoryInterface
         $redirect->setDestination($destination);
         $redirect->setOnly404($only404);
         $redirect->setPermanent($permanent);
+        $redirect->setRegexp($regexp);
         $redirect->enable();
 
         foreach ($channels as $channel) {
