@@ -20,6 +20,8 @@ interface RedirectInterface extends ResourceInterface, ToggleableInterface, Chan
 
     public function getDestination(): ?string;
 
+    public function getFinalDestination(string $currentPath): ?string;
+
     public function setDestination(string $destination): void;
 
     public function isPermanent(): bool;
@@ -46,6 +48,10 @@ interface RedirectInterface extends ResourceInterface, ToggleableInterface, Chan
     public function isOnly404(): bool;
 
     public function setOnly404(bool $only404): void;
+
+    public function isRegexp(): bool;
+
+    public function setRegexp(bool $regexp): void;
 
     public function keepQueryString(): bool;
 

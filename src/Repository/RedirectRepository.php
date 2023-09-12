@@ -32,13 +32,17 @@ class RedirectRepository extends EntityRepository implements RedirectRepositoryI
         ;
     }
 
-    public function findOneEnabledBySource(string $source, ChannelInterface $channel = null, bool $only404 = null): ?RedirectInterface
+    public function findOneEnabledBySource(string $source, ChannelInterface $channel = null, bool $only404 = null, bool $regexp = false): ?RedirectInterface
     {
         $qb = $this->createQueryBuilder('o')
-            ->andWhere('o.source = :source')
             ->andWhere('o.enabled = true')
-            ->setParameter('source', $source)
         ;
+
+        $qb = !$regexp
+            ? $qb->andWhere('o.source = :source')
+            : $qb->andWhere("REGEXP(:source, o.source) = 1");
+
+        $qb = $qb->setParameter('source', $source);
 
         if (null !== $channel) {
             $qb
@@ -73,6 +77,10 @@ class RedirectRepository extends EntityRepository implements RedirectRepositoryI
 
                 break;
             }
+        }
+
+        if ($preferredRedirect && $regexp) {
+            $preferredRedirect->setRegexp(true);
         }
 
         return $preferredRedirect;

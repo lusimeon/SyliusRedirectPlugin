@@ -37,6 +37,8 @@ class Redirect implements RedirectInterface
     /** @var Collection<array-key, ChannelInterface> */
     protected $channels;
 
+    protected $regexp = false;
+
     public function __construct()
     {
         $this->channels = new ArrayCollection();
@@ -60,6 +62,25 @@ class Redirect implements RedirectInterface
     public function getDestination(): ?string
     {
         return $this->destination;
+    }
+
+    public function getFinalDestination(?string $currentPath = null): ?string
+    {
+        $destination = $this->getDestination();
+
+        if (!$this->isRegexp() || !$destination || !$source = $this->getSource()) {
+            return $destination;
+        }
+
+        if (!$currentPath) {
+            return null;
+        }
+
+        return preg_replace(
+            sprintf('/%s/', $source),
+            $destination,
+            $currentPath
+        );
     }
 
     public function setDestination(?string $destination = ''): void
@@ -101,6 +122,16 @@ class Redirect implements RedirectInterface
     {
         ++$this->count;
         $this->setLastAccessed(new DateTime());
+    }
+
+    public function isRegexp(): bool
+    {
+        return $this->regexp;
+    }
+
+    public function setRegexp(bool $regexp): void
+    {
+        $this->regexp = $regexp;
     }
 
     public function isOnly404(): bool

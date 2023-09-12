@@ -71,6 +71,6 @@ final class ControllerSubscriber implements EventSubscriberInterface
             throw $lastRedirect->isPermanent() ? new GoneHttpException() : new NotFoundHttpException();
         }
 
-        $event->setController(static fn () => self::getRedirectResponse($lastRedirect, $request->getQueryString()));
+        $event->setController(static fn () => self::getRedirectResponse($lastRedirect, $request->getQueryString(), $request->getPathInfo()));
     }
 }

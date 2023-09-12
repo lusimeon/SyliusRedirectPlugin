@@ -87,6 +87,6 @@ class NotFoundSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $event->setResponse(self::getRedirectResponse($lastRedirect, $request->getQueryString()));
+        $event->setResponse(self::getRedirectResponse($lastRedirect, $request->getQueryString(), $request->getPathInfo()));
     }
 }
