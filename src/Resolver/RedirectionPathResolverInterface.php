@@ -14,7 +14,7 @@ interface RedirectionPathResolverInterface
     /**
      * @throws InfiniteLoopException if the redirect path has a cycle, i.e. infinite loop
      */
-    public function resolve(string $source, ChannelInterface $channel = null, bool $only404 = false): RedirectionPath;
+    public function resolve(string $source, ChannelInterface $channel = null, bool $only404 = false, bool $withRegexp = false): RedirectionPath;
 
     /**
      * @throws InfiniteLoopException if the redirect path has a cycle, i.e. infinite loop
@@ -22,6 +22,7 @@ interface RedirectionPathResolverInterface
     public function resolveFromRequest(
         Request $request,
         ChannelInterface $channel = null,
-        bool $only404 = false
+        bool $only404 = false,
+        bool $withRegexp = false,
     ): RedirectionPath;
 }

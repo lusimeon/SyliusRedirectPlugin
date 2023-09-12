@@ -22,20 +22,23 @@ final class RedirectionPathResolver implements RedirectionPathResolverInterface
     public function resolve(
         string $source,
         ChannelInterface $channel = null,
-        bool $only404 = false
+        bool $only404 = false,
+        bool $withRegexp = false,
     ): RedirectionPath {
         $redirectionPath = new RedirectionPath();
 
         do {
             $redirect = $this->redirectRepository->findOneEnabledBySource($source, $channel, $only404);
 
-            if (!$redirect) {
+            if (!$redirect && $withRegexp) {
                 $redirect = $this->redirectRepository->findOneEnabledBySource($source, $channel, $only404, true);
             }
 
             if (null !== $redirect) {
                 $redirectionPath->addRedirect($redirect);
-                $source = (string) $redirect->getFinalDestination($source);
+                $source = $withRegexp
+                    ? (string) $redirect->getFinalDestination($source)
+                    : (string) $redirect->getDestination();
             }
 
             /** @psalm-suppress TypeDoesNotContainType */
@@ -54,8 +57,9 @@ final class RedirectionPathResolver implements RedirectionPathResolverInterface
     public function resolveFromRequest(
         Request $request,
         ChannelInterface $channel = null,
-        bool $only404 = false
+        bool $only404 = false,
+        bool $withRegexp = false,
     ): RedirectionPath {
-        return $this->resolve($request->getPathInfo(), $channel, $only404);
+        return $this->resolve($request->getPathInfo(), $channel, $only404, $withRegexp);
     }
 }

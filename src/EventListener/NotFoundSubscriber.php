@@ -65,7 +65,8 @@ class NotFoundSubscriber implements EventSubscriberInterface
         $redirectionPath = $this->redirectionPathResolver->resolveFromRequest(
             $request,
             $channel,
-            true
+            true,
+            true,
         );
 
         if ($redirectionPath->isEmpty()) {

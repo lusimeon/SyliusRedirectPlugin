@@ -53,7 +53,9 @@ final class ControllerSubscriber implements EventSubscriberInterface
         }
         $redirectionPath = $this->redirectionPathResolver->resolveFromRequest(
             $request,
-            $channel
+            $channel,
+            false,
+            true,
         );
 
         if ($redirectionPath->isEmpty()) {
