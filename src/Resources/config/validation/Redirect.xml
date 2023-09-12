@@ -23,16 +23,6 @@
                 <option name="propertyPath">destination</option>
                 <option name="groups">setono_sylius_redirect</option>
             </constraint>
-            <constraint name="Regex">
-                <option name="message">setono_sylius_redirect.form.redirect.source.regex</option>
-                <option name="pattern">#^/#</option>
-                <option name="groups">setono_sylius_redirect</option>
-            </constraint>
-            <constraint name="Setono\SyliusRedirectPlugin\Validator\Constraints\SourceRegex">
-                <option name="message">setono_sylius_redirect.form.redirect.source.source_regex</option>
-                <option name="pattern"> </option> <!-- Is overridden in Setono\SyliusRedirectPlugin\Validator\Constraints\SourceRegexValidator -->
-                <option name="groups">setono_sylius_redirect</option>
-            </constraint>
         </property>
     </class>
 </constraint-mapping>
