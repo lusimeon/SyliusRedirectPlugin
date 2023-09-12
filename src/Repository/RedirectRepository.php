@@ -68,6 +68,10 @@ class RedirectRepository extends EntityRepository implements RedirectRepositoryI
         $preferredRedirect = null;
 
         foreach ($redirects as $redirect) {
+            if ($regexp && !$redirect->isRegexp()) {
+                continue;
+            }
+
             if (null === $preferredRedirect && $redirect->getChannels()->count() === 0) {
                 $preferredRedirect = $redirect;
             }
